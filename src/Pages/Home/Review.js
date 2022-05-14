@@ -7,11 +7,11 @@ const Review = ({ review }) => {
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores dolorem eligendi porro repellendus, perspiciatis id.</p>
                 <div className='flex justify-center'>
                     <div class="avatar">
-                        <div class="mt-3 w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <div class="mt-4 w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 mr-4">
                             <img src={review.img} alt="" />
                         </div>
                     </div>
-                    <div className='mt-2'>
+                    <div className='mt-5'>
                         <h4 className='text-xl'>{review.name}</h4>
                         <p>{review.location}</p>
                     </div>
