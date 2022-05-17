@@ -6,6 +6,7 @@ import Appointment from './Pages/Appointment/Appointment';
 import Contact from './Pages/Contact/Contact';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
+import SignIn from './Pages/Login/SignIn';
 import Navbar from './Pages/Shared/Navbar';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/appointment' element={<Appointment></Appointment>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/signin' element={<SignIn></SignIn>}></Route>
         <Route path='/contact' element={<Contact></Contact>}></Route>
       </Routes>
     </div>
