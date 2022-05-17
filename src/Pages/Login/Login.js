@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.git';
 
 const Login = () => {
+
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
@@ -13,20 +14,28 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    //    requier auth for code 
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    useEffect(()=>{
+        if (gUser || user) {
+            navigate(from, { replace: true });
+        };
+    },[gUser,user,from,navigate])
+
     //   email and password  loading
     if (gLoading || loading) {
         return <button className="btn loading justify-items-center mt-40">loading</button>;
     }
     // email and password error 
     let errorElement;
-    if(gError || error){
-        errorElement=<p className='text-red-500'>{gError?.message || error?.message}</p>
+    if (gError || error) {
+        errorElement = <p className='text-red-500'>{gError?.message || error?.message}</p>
 
     }
-    //   google user 
-    if (gUser || user) {
-        console.log(user)
-    };
+   
     // onsubmit for code 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password);
